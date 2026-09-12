@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Student Registration_srirat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h2>Student Registration (CS319)</h2>
+
+  <!-- ให้ JavaScript เรียกฟอร์มนี้ได้ผ่าน document.forms["registration"] บรรทัด 123 -->
+  <form name="registration" onsubmit="return checkForm()" novalidate> 
+
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" placeholder="5-12 characters">
+    <p class="error_msg" id="username_error">Username must be 5-12 characters.</p>
+
+    <label for="pass">Password</label>
+    <input type="password" id="pass" name="pass" placeholder="8 characters">
+    <p class="error_msg" id="pass_error">Password must be at least 8 characters.</p>
+
+    <label for="fname">First Name</label>
+    <input type="text" id="fname" name="fname" placeholder="Your name..">
+    <p class="error_msg" id="fname_error">Please enter your first name..</p>
+
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname" name="lname" placeholder="Your last name..">
+    <p class="error_msg" id="lname_error">Please enter your last name.</p>
+
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email" placeholder="example@email.com">
+    <p class="error_msg" id="email_error">Please enter a valid email address.</p>
+
+    <label for="address">Address (Optional)</label>
+    <input type="text" id="address" name="address" placeholder="Your address..">
+
+    <label for="country">Country</label>
+    <select id="country" name="country">
+      <option value="">-- Select a country --</option>
+      <option value="thailand">Thailand</option>
+      <option value="australia">Australia</option>
+      <option value="canada">Canada</option>
+      <option value="usa">USA</option>
+    </select>
+    <p class="error_msg" id="country_error">Please select a country.</p>
+
+    <label for="zip">ZIP Code</label>
+    <input type="text" id="zip" name="zip" placeholder="Numbers only">
+    <p class="error_msg" id="zip_error">ZIP code must contain exactly 5 digits.</p>
+
+    <fieldset id="lang_row">
+      <legend>Preferred Language</legend>
+      <input type="checkbox" id="lang1" name="lang" value="english">
+      <label for="lang1">English</label>
+      <input type="checkbox" id="lang2" name="lang" value="thai">
+      <label for="lang2">Thai</label>
+    </fieldset>
+    <p class="error_msg" id="lang_error">Please select at least 1 Preferred Language.</p>
+
+    <fieldset id="gender_row">
+      <legend>Gender</legend>
+      <input type="radio" id="gender1" name="gender" value="male">
+      <label for="gender1">Male</label>
+      <input type="radio" id="gender2" name="gender" value="female">
+      <label for="gender2">Female</label>
+      <input type="radio" id="gender3" name="gender" value="lgbtq">
+      <label for="gender3">LGBTQ+</label>
+    </fieldset>
+    <p class="error_msg" id="gender_error">Please select a Gender.</p>
+
+    <label for="subject">Subject (Optional)</label>
+    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+
+    <input type="submit" value="Submit">
+
+  </form>
+</div>
+
+    <!-- <style>
+        .error_input {
+        color: red;
+                display: none;
+        }
+    </style>
+    <script>
+        function validateForm(){
+            const targetForm = document.forms["application_form"];
+            const fnameEl = targetForm["fname"];
+            var fnameValue = fnameEl.value;
+
+            const fnameLableEl = document.getElementById("fname_lable");
+            const errorInputFname = document.getElementById("error_input_fname");
+
+            if (fnameValue == ""){
+                // fnameLableEl.classList.add("error_input");
+                // alert("First name cannot empty!");
+                errorInputFname.style.display ="block";
+                fnameEl.style.borderColor = "red";
+                return false;
+            } else if (fnameValue.length <= 3 || fnameValue.length > 10) {
+                // fnameLableEl.classList.add(error_input);
+                // alert("Name cannot less then 3 or more then 10");
+                errorInputFname.style.display ="block";
+                fnameEl.style.borderColor = "red";
+
+                return false;
+            }
+                // fnameLableEl.classList.removw("error_input");
+                errorInputFname.style.display ="none";
+                return true
+            }
+    </script> -->
+
+<!-- Note ไว้กันลืม 
+    var Scope กว้าง มองเห็นได้ทั้งฟังก์ชัน ไม่สนใจว่าอยู่ใน { } ไหน
+    const (มาพร้อม let) Scope แคบเหมือน let (แค่ใน { } ที่ประกาศ) -->
+<script>
+var targetForm = document.forms["registration"];
+
+function checkUsername() {
+  var uname = targetForm["username"];
+  var errorEl = document.getElementById("username_error");
+  var len = uname.value.length;
+
+  if (len == 0 || len < 5 || len > 12) {
+    errorEl.style.display = "block";
+    uname.style.borderColor = "red";
+    return false;
+  }
+  errorEl.style.display = "none";
+  uname.style.borderColor = "";
+  return true;
+}
+
+function checkPass() {
+  var upass = targetForm["pass"];
+  var errorEl = document.getElementById("pass_error");
+  var len = upass.value.length;
+
+  if (len == 0 || len < 6 || len > 16) {
+    errorEl.style.display = "block";
+    upass.style.borderColor = "red";
+    return false;
+  }
+  errorEl.style.display = "none";
+  upass.style.borderColor = "";
+  return true;
+}
+
+function checkLetter(fieldName, errorId) {
+  var el = targetForm[fieldName];
+  var errorEl = document.getElementById(errorId);
+  var letters = /^[A-Za-z]+$/;
+
+  if (el.value.match(letters)) {
+    errorEl.style.display = "none";
+    el.style.borderColor = "";
+    return true;
+  } else {
+    errorEl.style.display = "block";
+    el.style.borderColor = "red";
+    return false;
+  }
+}
+
+function checkEmail() {
+  var uemail = targetForm["email"];
+  var errorEl = document.getElementById("email_error");
+  var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+  if (uemail.value.match(mailformat)) {
+    errorEl.style.display = "none";
+    uemail.style.borderColor = "";
+    return true;
+  } else {
+    errorEl.style.display = "block";
+    uemail.style.borderColor = "red";
+    return false;
+  }
+}
+
+function checkCountry() {
+  var ucountry = targetForm["country"];
+  var errorEl = document.getElementById("country_error");
+
+  if (ucountry.value == "") {
+    errorEl.style.display = "block";
+    ucountry.style.borderColor = "red";
+    return false;
+  }
+  errorEl.style.display = "none";
+  ucountry.style.borderColor = "";
+  return true;
+}
+
+function checkZip() {
+  var uzip = targetForm["zip"];
+  var errorEl = document.getElementById("zip_error");
+  var numbers = /^[0-9]+$/;
+
+  if (uzip.value.match(numbers)) {
+    errorEl.style.display = "none";
+    uzip.style.borderColor = "";
+    return true;
+  } else {
+    errorEl.style.display = "block";
+    uzip.style.borderColor = "red";
+    return false;
+  }
+}
+
+function checkLang() {
+  var boxes = targetForm["lang"];
+  var row = document.getElementById("lang_row");
+  var errorEl = document.getElementById("lang_error");
+  var checked = false;
+
+  for (var i = 0; i < boxes.length; i++) {
+    if (boxes[i].checked) {
+      checked = true;
+    }
+  }
+
+  if (!checked) {
+    errorEl.style.display = "block";
+    row.style.borderColor = "red";
+    return false;
+  }
+  errorEl.style.display = "none";
+  row.style.borderColor = "";
+  return true;
+}
+
+function checkGender() {
+  var radios = targetForm["gender"];
+  var row = document.getElementById("gender_row");
+  var errorEl = document.getElementById("gender_error");
+  var checked = false;
+
+  for (var i = 0; i < radios.length; i++) {
+    if (radios[i].checked) {
+      checked = true;
+    }
+  }
+
+  if (!checked) {
+    errorEl.style.display = "block";
+    row.style.borderColor = "red";
+    return false;
+  }
+  errorEl.style.display = "none";
+  row.style.borderColor = "";
+  return true;
+}
+
+<!-- สไลด์ 25 ฟังก์ชันหลักที่เรียกฟังก์ชันย่อยของแต่ละช่อง คืนค่า true/false แล้วให้ onsubmit -->
+function checkForm() {
+  var ok1 = checkUsername();
+  var ok2 = checkPass();
+  var ok3 = checkLetter("fname", "fname_error");
+  var ok4 = checkLetter("lname", "lname_error");
+  var ok5 = checkEmail();
+  var ok6 = checkCountry();
+  var ok7 = checkZip();
+  var ok8 = checkLang();
+  var ok9 = checkGender();
+
+  if (ok1 && ok2 && ok3 && ok4 && ok5 && ok6 && ok7 && ok8 && ok9) {
+    alert("ลงทะเบียนข้อมูลสำเร็จ!");
+    targetForm.reset();
+    return false;
+  }
+
+  return false;
+}
+</script>
+
+</body>
+</html>

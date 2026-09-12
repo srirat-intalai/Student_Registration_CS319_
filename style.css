@@ -1,0 +1,78 @@
+body {
+  background-color: #eef2f0;
+  font-family: "Fraunces", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h2 {
+  text-align: center;
+  color: #00b896;
+  font-weight: 700; /* ให้หัวข้อดูหนาขึ้นหน่อย เพราะ Fraunces เป็นฟอนต์ variable weight */
+}
+
+/* Style inputs with type="text", select elements and textareas */
+input[type=text], input[type=password], select, textarea {
+  width: 100%; /* Full width */
+  padding: 12px; /* Some padding */
+  border: 1px solid #0099d0; /* Gray border */
+  border-radius: 4px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 6px; /* Add a top margin */
+  margin-bottom: 16px; /* Bottom margin (เผื่อที่ให้ error text ข้างล่าง) */
+  resize: vertical; /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+/* error สีแดงใต้ช่อง */
+.error_msg {
+  display: none;
+  color: #ff0800;
+  font-size: 13px;
+  margin: 0 0 12px 0;
+}
+
+/* Style the submit button with a specific background color etc */
+input[type=submit] {
+  background-color: #00b896;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=submit]:hover {
+  background-color: #00b896;
+}
+
+/* Add a background color and some padding around the form */
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  max-width: 500px;
+  margin: 40px auto;
+}
+
+/* กรอบของ checkbox กับ radio (Preferred Language / Gender) */
+fieldset {
+  margin-top: 6px;
+  margin-bottom: 4px;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+fieldset legend {
+  padding: 0 4px;
+  font-weight: bold;
+}
+
+fieldset label {
+  font-weight: normal;
+  margin-right: 15px;
+}
